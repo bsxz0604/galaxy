@@ -1,0 +1,77 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<div>
+	<form action="http://localhost:9000/account/registration" method="post"> 
+		<label>Username:</label>
+	    <input name="username" type="text"/>
+	    <br/>
+	    <label>Password:</label>	    
+	    <input name="password" type="text"/>
+	    <br/>
+	    <label>Type:</label>
+	    <input name="type" type="text"/>
+	    <br/>
+	    <input name="submit"  type="submit" value="register">
+	</form>
+</div>
+
+<hr/>
+
+<div>
+	<form action="http://localhost:9000/account/login" method="post"> 
+		<label>Username:</label>
+	    <input name="username" type="text"/>
+	    <br/>
+	    <label>Password:</label>	    
+	    <input name="password" type="text"/>
+	    <br/>
+	    <label>Type:</label>
+	    <input name="type" type="text"/>
+	    <br/>
+	    <input name="submit"  type="submit" value="login">
+	</form>
+<div>
+
+<hr/>
+
+<div>
+	<form action="http://localhost:9000/application/app/new" method="post"> 
+		<label>Application name:</label>
+	    <input name="appName" type="text"/>
+	    <br/>
+	    <input name="submit"  type="submit" value="create">
+	</form>
+</div>
+
+<div>
+	<form action="http://localhost:9000/application/app/34536418-d6b2-451f-a400-4f0e284c9497" method="get">
+		<input name="submit" type="submit" value="select 非常完美">
+	</form>
+</div>
+
+<hr/>
+
+<div>
+	<form action="http://localhost:9000/activity/new" method="post">
+		<label>start time</label>
+		<input name="startTime" type="date" value="2011-11-11"/>
+		<br/>
+		<label>end time</label>
+		<input name="endTime" type="date" value="2011-12-11"/>
+		<br/>
+		<label>img url</label>
+		<input name="imgUrl" type="text"/>
+		<br/>
+		<label>link</label>
+		<input name="link" type="text"/>
+		<br/>		
+		<input name="submit" type="submit" value="create activity"/>
+</div>
+
+<div>
+	<form action="http://localhost:9000/acitivty/0/3" method="get">
+		<input name="submit" type="submit" value="query activity"/>
+	</form>
+</div>
+</html>
+	

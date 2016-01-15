@@ -1,0 +1,337 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+# GET     /                           controllers.Application.index()
+
+#Account interface
+POST    /account/registration           @controllers.common.AccountController.register()
+POST    /account/login                  @controllers.common.AccountController.login()
+GET     /account/logout                 @controllers.common.AccountController.logout()
+POST    /account/loginWithApp/:appId    @controllers.common.AccountController.loginWithApp(appId:String)
+GET     /account/delete/:accountId      @controllers.common.AccountController.delete(accountId:String)
+
+#Application interface
+POST    /application/app/new            @controllers.application.ApplicationController.create()
+GET     /application/app/lists          @controllers.application.ApplicationController.getList()
+GET     /application/app/:id            @controllers.application.ApplicationController.select(id:String)
+PUT     /application/app                @controllers.application.ApplicationController.update()
+DELETE  /application/app/:id            @controllers.application.ApplicationController.delete(id:String)
+
+# Upload Picture
+POST    /application/appPicture         @controllers.application.ApplicationController.uploadAppPicture()
+POST    /application/userPicture        @controllers.application.ApplicationController.uploadUserPicture()
+POST    /application/appPicture/old     @controllers.application.ApplicationController.uploadAppPictureOld()
+POST    /application/userPicture/old    @controllers.application.ApplicationController.uploadUserPictureOld()
+
+#Banner interface
+POST    /banner/new                     @controllers.advertisement.BannerController.create()
+GET     /banner/Id/:id                  @controllers.advertisement.BannerController.read(id:String)
+GET     /banner/small                   @controllers.advertisement.BannerController.getSmallBanners()
+GET     /banner/large                   @controllers.advertisement.BannerController.getLargeBanners()
+GET     /banner/video                   @controllers.advertisement.BannerController.getVideoBanners()
+POST     /banner/current                 @controllers.advertisement.BannerController.update()
+POST   /banner/:id                     @controllers.advertisement.BannerController.delete(id:String)
+GET    /banner/:pageNumber/:sizePerPage   @controllers.advertisement.BannerController.readAll(pageNumber:Integer, sizePerPage:Integer)
+
+# Application user interface
+POST    /users/profile/new              @controllers.users.AppProfileController.create()
+GET     /users/profile                  @controllers.users.AppProfileController.read()
+GET     /users/profile/search/:keyword/:pageNumber/:sizePerPage  @controllers.users.AppProfileController.readBySearchId(keyword:String, pageNumber:Integer, sizePerPage:Integer)
+GET     /users/profile/:userId          @controllers.users.AppProfileController.readById(userId:String)
+POST    /users/profile/current          @controllers.users.AppProfileController.update()
+POST    /users/profile/current/:userId  @controllers.users.AppProfileController.updateById(userId:String)
+GET    /users/readAll                      @controllers.users.AppProfileController.readAll()
+GET    /users/readAll/:programId       @controllers.users.AppProfileController.readProgram(programId:String)
+POST   /users/createAll                @controllers.users.AppProfileController.createAll()
+GET    /users/phoneAttach/:searchId/:accountId              @controllers.users.AppProfileController.phoneAttach(searchId:String, accountId:String)
+GET    /users/isfollow        		   @controllers.users.AppProfileController.isfollow()
+
+#App Money interface
+GET    /users/money/read                 @controllers.users.AppProfileMoneyController.getMoney()
+POST   /users/money/save/:amount         @controllers.users.AppProfileMoneyController.saveMoney(amount:Integer)
+
+#App Gift interface
+GET     /users/gift/issendgifttoday                                     @controllers.users.AppProfileGiftController.isSendGiftToday()
+GET     /users/gift/read/:account_id                                     @controllers.users.AppProfileGiftController.readGift(account_id:String)
+GET     /users/gift/gifttable/:pageNumber/:sizePerPage  @controllers.users.AppProfileGiftController.getGiftTable(pageNumber:Integer, sizePerPage:Integer)
+POST    /users/gift/give/:gift_id/:star_id/:gift_number             controllers.users.AppProfileGiftController.giveGift(gift_id:String,star_id:String,gift_number:Integer)
+POST    /users/gift/give/back/:gift_id/:star_id/:gift_number             @controllers.users.AppProfileGiftController.giveGiftBack(gift_id:String,star_id:String,gift_number:Integer)
+POST    /users/gift/create               @controllers.users.GiftController.createGift()
+POST    /users/gift/update               @controllers.users.GiftController.update()
+GET     /users/gift/readAll/:pageNumber/:sizePerPage              @controllers.users.GiftController.readAll(pageNumber:Integer,sizePerPage:Integer)
+GET     /users/gift/delete/:id          @controllers.users.GiftController.delete(id:Integer)
+
+#Badge
+POST    /users/badge/create               @controllers.users.BadgeController.createBadge()
+POST    /users/badge/update               @controllers.users.BadgeController.update()
+GET     /users/badge/readAll/:pageNumber/:sizePerPage              @controllers.users.BadgeController.readAll(pageNumber:Integer,sizePerPage:Integer)
+GET     /users/badge/delete/:id          @controllers.users.BadgeController.delete(id:String)
+
+#App Honor interface
+GET    /users/honor/:account_id              @controllers.users.AppHonorController.readHonor(account_id:String)
+
+#App Charm interface
+GET    /users/charm/:account_id              @controllers.users.AppCharmController.readCharm(account_id:String)
+
+#FindBackAppProfile
+POST   /users/findBack/create                    @controllers.users.AnnouncementFeiMeiController.create()
+GET    /users/findBack/findById     @controllers.users.AnnouncementFeiMeiController.readById()
+POST   /users/findBack/update                   @controllers.users.AnnouncementFeiMeiController.update()
+
+#App Hot People List interface
+GET     /user/hotPeople/daymanlist/:pageNumber/:sizePerPage               controllers.users.HotPeopleListController.dayManList(pageNumber:Integer, sizePerPage:Integer)
+GET     /user/hotPeople/weekmanlist/:pageNumber/:sizePerPage              controllers.users.HotPeopleListController.weekManList(pageNumber:Integer, sizePerPage:Integer)
+GET     /user/hotPeople/monthmanlist/:pageNumber/:sizePerPage             controllers.users.HotPeopleListController.monthManList(pageNumber:Integer, sizePerPage:Integer)
+GET     /user/hotPeople/daywomanlist/:pageNumber/:sizePerPage             controllers.users.HotPeopleListController.dayWomanList(pageNumber:Integer, sizePerPage:Integer)
+GET     /user/hotPeople/weekwomanlist/:pageNumber/:sizePerPage            controllers.users.HotPeopleListController.weekWomanList(pageNumber:Integer, sizePerPage:Integer)
+GET     /user/hotPeople/monthwomanlist/:pageNumber/:sizePerPage           controllers.users.HotPeopleListController.monthWomanList(pageNumber:Integer, sizePerPage:Integer)
+GET     /user/hotPeople/daynewbielist/:pageNumber/:sizePerPage            controllers.users.HotPeopleListController.dayNewbieList(pageNumber:Integer, sizePerPage:Integer)
+GET     /user/hotPeople/weeknewbielist/:pageNumber/:sizePerPage           controllers.users.HotPeopleListController.weekNewbieList(pageNumber:Integer, sizePerPage:Integer)
+GET     /user/hotPeople/monthnewbielist/:pageNumber/:sizePerPage          controllers.users.HotPeopleListController.monthNewbieList(pageNumber:Integer, sizePerPage:Integer)
+GET     /user/hotPeople/dayrichlist/:pageNumber/:sizePerPage              controllers.users.HotPeopleListController.dayRichList(pageNumber:Integer, sizePerPage:Integer)
+GET     /user/hotPeople/weekrichlist/:pageNumber/:sizePerPage             controllers.users.HotPeopleListController.weekRichList(pageNumber:Integer, sizePerPage:Integer)
+GET     /user/hotPeople/monthrichlist/:pageNumber/:sizePerPage            controllers.users.HotPeopleListController.monthRichList(pageNumber:Integer, sizePerPage:Integer)
+
+# Interest fan interface
+POST    /users/interest/new                                     @controllers.users.InterestFanController.create()
+GET     /users/interest/me/:userId/:pageNumber/:sizePerPage     @controllers.users.InterestFanController.readInteresterIdByPage(userId:String, pageNumber:Integer, sizePerPage:Integer)
+GET     /users/interest/other/:userId/:pageNumber/:sizePerPage  @controllers.users.InterestFanController.readInteresteeIdByPage(userId:String, pageNumber:Integer, sizePerPage:Integer)
+GET     /users/interest/number                                  @controllers.users.InterestFanController.readNumber()
+GET     /users/interest/number/:userId                          @controllers.users.InterestFanController.readNumberById(userId:String)
+GET     /users/interest/isfan/:otherId                          @controllers.users.InterestFanController.isInterested(otherId:String)
+PUT     /users/interest/current                                 @controllers.users.InterestFanController.update()
+POST    /users/interest/cancellation/:userId                    @controllers.users.InterestFanController.delete(userId:String)
+
+# Program title interface
+POST    /program/title/new              @controllers.program.ProgramController.create()
+GET     /program/title/:pageNumber/:sizePerPage                  @controllers.program.ProgramController.read(pageNumber:Integer, sizePerPage:Integer)
+GET     /program/title                   @controllers.program.ProgramController.readAll()
+GET     /program/title/:appId           @controllers.program.ProgramController.readByAppId(appId:String)
+POST     /program/title                  @controllers.program.ProgramController.update()
+POST  /program/title/:id              @controllers.program.ProgramController.delete(id:String)
+
+# Program content interface
+POST    /program/content/new                @controllers.program.ProgramContentController.create()
+GET     /program/content/:programId         @controllers.program.ProgramContentController.read(programId:String)
+GET     /program/content/account/:programId   @controllers.program.ProgramContentController.readAccounts(programId:String)
+GET     /program/content/newJb/:pageNumber/:sizePerPage          @controllers.program.ProgramContentController.readNew(pageNumber:Integer,sizePerPage:Integer)
+POST     /program/content                    @controllers.program.ProgramContentController.update()
+POST   /program/content/:id                @controllers.program.ProgramContentController.delete(id:String)
+
+# Activity interface
+POST    /activity/new                       @controllers.activity.ActivityController.create()
+GET     /activity/$pageNumber<[0-9]+>/:size @controllers.activity.ActivityController.read(pageNumber:Integer, size:Integer)
+GET     /activity/isvoted/:id               @controllers.activity.ActivityController.isVoted(id:String)
+POST     /activity/update                           @controllers.activity.ActivityController.update()
+POST     /activity/update/fcwm                     @controllers.activity.ActivityController.updateFcwm()
+POST  /activity/:id                       @controllers.activity.ActivityController.delete(id:String)
+GET    /activity/read/:Id                   @controllers.activity.ActivityController.readById(Id:String)
+
+# Stock interface
+POST   /stock/entry/new                 @controllers.stock.StockEntryController.create()
+GET    /stock/save/sqlIn                @controllers.stock.StockController.sqlStock()
+GET   /stock/recommend/new/:stockId     @controllers.stock.StockRecommendController.create(stockId:String)
+GET    /stock/recommend/readAll         @controllers.stock.StockRecommendController.readAll()
+GET    /stock/recommend/readById/:id    @controllers.stock.StockRecommendController.readById(id:String)
+GET   /stock/recommend/readToday/:accountId        @controllers.stock.StockRecommendController.readToday(accountId:String)
+GET    /stock/todayData                  @controllers.stock.StockRecommendController.dataToday()
+GET    /stock/month/:pageNumber/:sizePerPage     @controllers.stock.StockRankController.MonthList(pageNumber:Integer, sizePerPage:Integer)
+GET    /stock/week/:pageNumber/:sizePerPage     @controllers.stock.StockRankController.WeekList(pageNumber:Integer, sizePerPage:Integer)
+GET    /stock/day/:pageNumber/:sizePerPage     @controllers.stock.StockRankController.DayList(pageNumber:Integer, sizePerPage:Integer)
+GET    /stock/monthCommon/:pageNumber/:sizePerPage     @controllers.stock.StockRankController.MonthCommonList(pageNumber:Integer, sizePerPage:Integer)
+GET    /stock/weekCommon/:pageNumber/:sizePerPage     @controllers.stock.StockRankController.WeekCommonList(pageNumber:Integer, sizePerPage:Integer)
+GET    /stock/dayCommon/:pageNumber/:sizePerPage     @controllers.stock.StockRankController.DayCommonList(pageNumber:Integer, sizePerPage:Integer)
+GET    /stock/like/:words/:pageNumber/:sizePerPage           @controllers.stock.StockController.likeSearch(words:String,pageNumber:Integer,sizePerPage:Integer)
+GET    /stock/themelike/:words/:pageNumber/:sizePerPage   @controllers.stock.StockCommunityController.likeSearch(words:String,pageNumber:Integer,sizePerPage:Integer)
+GET    /stock/sign/today                @controllers.stock.StockPointController.signIn()
+POST   /stock/share/point               @controllers.stock.StockPointController.saveShareRecord()
+GET    /stock/point/read/:accountId     @controllers.stock.StockPointController.readById(accountId:String)
+GET    /stock/todayData/get             @controllers.stock.StockInfoController.addRecommend()
+GET    /stock/theme/default             @controllers.stock.StockCommunityController.themeCreateStock()
+POST    /stock/article/post/:allTheme    @controllers.stock.StockCommunityController.post(allTheme:String)
+GET    /stock/theme/isInOrNot/:themeId    @controllers.stock.StockCommunityController.isInOrNot(themeId:String)
+GET     /stock/interest/other/:userId/:pageNumber/:sizePerPage  @controllers.stock.StockCommunityController.readInteresteeIdByPage(userId:String, pageNumber:Integer, sizePerPage:Integer)
+GET     /stock/chinese/pinyin/new             @controllers.stock.StockChineseToPinyin.newChinese()
+GET     /stock/thread/status/get         controllers.stock.StockManager.threadStatus()
+GET     /stock/thread/stop               controllers.stock.StockManager.threadStop()
+#POST    /stock/justForTest/:gift_id/:star_id/:gift_number  @controllers.stock.StockInfoController.test1(gift_id:String,star_id:String,gift_number:Integer) 
+
+# Activity content interface
+POST    /activity/content/new           @controllers.activity.ActivityContentController.create()
+GET     /activity/content/:activityId   @controllers.activity.ActivityContentController.read(activityId:String)
+PUT     /activity/content               @controllers.activity.ActivityContentController.update()
+DELETE  /activity/content/:id           @controllers.activity.ActivityContentController.delete(id:String)
+
+# Activity choice interface
+POST    /activity/choice/new            @controllers.activity.ActivityChoiceController.create()
+GET     /activity/choice/:id            @controllers.activity.ActivityChoiceController.readById(id:String)
+PUT     /activity/choice                @controllers.activity.ActivityChoiceController.update()
+DELETE  /activity/choice/:id            @controllers.activity.ActivityChoiceController.delete(id:String)
+
+# Activity result interface
+POST    /activity/result/newList            @controllers.activity.ActivityResultController.createList()
+POST    /activity/result/new                @controllers.activity.ActivityResultController.create()
+GET     /activity/result/id/:id             @controllers.activity.ActivityResultController.readById(id:String)
+GET     /activity/result/account/:id        @controllers.activity.ActivityResultController.readByAccountId(id:String)
+GET     /activity/result/content/:id        @controllers.activity.ActivityResultController.readByContentId(id:String)
+GET     /activity/result/isvoted/:contentId @controllers.activity.ActivityResultController.isVoted(contentId:String)
+GET     /activity/result/list/:contentId    @controllers.activity.ActivityResultController.queryResult(contentId:String)
+PUT     /activity/result                    @controllers.activity.ActivityResultController.update()
+DELETE  /activity/result/:id                @controllers.activity.ActivityResultController.delete(id:String)
+
+# ChatRoom result interface
+GET        /chatRoom/join                        @controllers.chatroom.ChatRoomController.join(userId:String,toUserName:String?="",toUserId:String?="")
+GET        /chatRoom/peopleNum/:roomId            @controllers.chatroom.ChatRoomController.getRoomPeopleNum(roomId:String)
+GET        /chatRoom/onlinePeople/:roomId/:pageNumber/:sizePerPage            @controllers.chatroom.ChatRoomController.getRoomPeopleByPage(roomId:String, pageNumber:Integer, sizePerPage:Integer)
+GET        /chatRoom/startDraw                    @controllers.chatroom.ChatRoomController.startDraw()
+GET        /chatRoom/draw/:roomId                 @controllers.chatroom.ChatRoomController.draw(roomId:String)
+
+# Album
+POST    /users/album/new                @controllers.users.AlbumController.create()
+GET     /users/album                    @controllers.users.AlbumController.read()
+GET     /users/album/:id                @controllers.users.AlbumController.readByUserId(id:String)
+PUT     /users/album                    @controllers.users.AlbumController.update()
+POST    /users/album/:id                @controllers.users.AlbumController.delete(id:String)
+
+# Constellation
+GET     /constellation/list             @controllers.common.ConstellationController.readList()
+GET     /constellation/$id<[0-9]+>      @controllers.common.ConstellationController.readById(id:Integer)
+
+# Nationality
+GET     /nationality/list               @controllers.common.NationalityController.readList()
+GET     /nationality/$id<[0-9]+>        @controllers.common.NationalityController.readById(id:Integer)
+
+# Geo information
+GET     /geo/address/:lat/:lon          @controllers.common.GeoController.getAddress(lat:Float, lon:Float)
+
+# User Address
+POST    /users/address/new              @controllers.users.UserAddressController.saveAddress()
+
+# weixin
+GET     /weixin/verify/:url             @controllers.weixin.WxController.verify(url:String)
+GET     /callback                       @controllers.weixin.WxController.wxCallback()
+GET     /weixin/newVerfy/:url           @controllers.weixin.WxController.newVerify(url:String)
+GET     /newcallback                    @controllers.weixin.WxController.newWxCallback()
+POST    /login                          @controllers.weixin.WxController.login()
+POST    /js/signature                   @controllers.weixin.WxController.getJsSignature()
+
+#Shake record
+POST    /shake/new                      @controllers.shake.ShakeRecordController.create()
+GET     /shake/user                     @controllers.shake.ShakeRecordController.read()
+GET     /shake/all                      @controllers.shake.ShakeRecordController.readAll()
+
+#Draw record
+POST     /ticket/status/:shopId           @controllers.ticket.DrawController.getStatus(shopId:String)
+POST     /ticket/draw                     @controllers.ticket.DrawController.draw()
+POST     /ticket/drawList                 @controllers.ticket.DrawController.getDrawList()
+GET      /ticket/use/:couponId            @controllers.ticket.DrawController.useCoupon(couponId:String)
+GET      /ticket/barcode/:code            @controllers.ticket.DrawController.getBarcode(code:String)
+POST     /ticket/share                    @controllers.ticket.DrawController.saveShareRecord()
+POST     /ticket/log                      @controllers.ticket.DrawController.saveShareLog()
+GET      /ticket/isUse/:couponId          @controllers.ticket.DrawController.isCouponUsed(couponId:String)
+GET      /ticket/detail/:couponId         @controllers.ticket.DrawController.getDetail(couponId:String)
+GET      /ticket/statistics/:shopId/:date @controllers.ticket.DrawController.getShopStatistics(shopId:String, date:String)
+GET      /ticket/statistics/all/:shopIds/:date @controllers.ticket.DrawController.getAllShopStatistics(shopIds:String, date:String)
+GET      /ticket/detail/:shopId/:date     @controllers.ticket.DrawController.getShopDetails(shopId:String, date:String)
+GET      /ticket/statistics/daily/:shopId/:fromDate/:toDate @controllers.ticket.DrawController.getShopDailyStatistics(shopId:String, fromDate:String, toDate:String)
+
+GET     /pictures/*filePath                @controllers.application.ApplicationController.resource(filePath : String)
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file                   controllers.Assets.at(path="/public", file)
+
+# Plaza article
+GET     /plaza/article/readAll/:pageNumber/:sizePerPage        @controllers.plaza.ArticleController.readAll(pageNumber:Integer, sizePerPage:Integer)
+GET    /plaza/article/readMyself/:userId/:pageNumber/:sizePerPage        @controllers.plaza.ArticleController.readMyself(userId:String, pageNumber:Integer, sizePerPage:Integer)
+POST    /plaza/article/post        @controllers.plaza.ArticleController.post()
+POST    /plaza/article/update        @controllers.plaza.ArticleController.update()
+POST    /plaza/article/delete        @controllers.plaza.ArticleController.delete()
+POST    /plaza/article/thumb/:thumbType/:typeId/:upOrDown        @controllers.plaza.ArticleController.thumb(thumbType:Integer, typeId:String, upOrDown:String)
+POST    /plaza/article/collections/post/:article/:addOrDelete        @controllers.plaza.ArticleController.collectionPost(article:String, addOrDelete:String)
+GET    /plaza/article/collections/get/:pageNumber/:sizePerPage        @controllers.plaza.ArticleController.collectionGet(pageNumber:Integer, sizePerPage:Integer)
+GET    /plaza/article/collections/isCollected/:article        @controllers.plaza.ArticleController.isCollected(article:String)
+GET     /plaza/article/top/:article       @controllers.plaza.ArticleController.top(article:String)
+GET     /plaza/article/down/:article      @controllers.plaza.ArticleController.down(article:String)
+GET    /plaza/article/readTop             @controllers.plaza.ArticleController.readTop()
+
+# Plaza comment
+GET     /plaza/comment/readAll/:article/:pageNumber/:sizePerPage        @controllers.plaza.CommentController.readAll(article:String, pageNumber:Integer, sizePerPage:Integer)
+POST    /plaza/comment/post        @controllers.plaza.CommentController.post()
+
+GET     /plaza/commentLevel2/readAll/:comments/:pageNumber/:sizePerPage        @controllers.plaza.CommentLevel2Controller.readAll(comments:String, pageNumber:Integer, sizePerPage:Integer)
+POST    /plaza/commentLevel2/post        @controllers.plaza.CommentLevel2Controller.post()
+
+# Plaza theme
+GET    /plaza/theme/view/:pageNumber/:sizePerPage        @controllers.plaza.ThemeController.themeView(pageNumber:Integer, sizePerPage:Integer)
+GET    /plaza/theme/isInOrNot/:theme        @controllers.plaza.ThemeController.isInOrNot(theme:String)
+GET    /plaza/theme/enter/:theme/:pageNumber/:sizePerPage        @controllers.plaza.ThemeController.themeEnter(theme:String, pageNumber:Integer, sizePerPage:Integer)
+POST    /plaza/theme/join/:theme        @controllers.plaza.ThemeController.themeJoin(theme:String)
+POST    /plaza/theme/exit/:theme        @controllers.plaza.ThemeController.themeExit(theme:String)
+GET    /plaza/theme/myTheme/:userId/:pageNumber/:sizePerPage        @controllers.plaza.ThemeController.myTheme(userId:String, pageNumber:Integer, sizePerPage:Integer)
+GET    /plaza/theme/articleRead/:articleId        @controllers.plaza.ThemeController.articleRead(articleId:String)
+POST    /plaza/theme/create        @controllers.plaza.ThemeController.themeCreate()
+POST    /plaza/theme/delete        @controllers.plaza.ThemeController.themeDelete()
+GET    /plaza/sign/signIn        @controllers.plaza.SignController.signIn()
+GET    /plaza/sign/read/:accountId    @controllers.plaza.SignController.readSign(accountId:String)
+
+# entry form
+POST    /activity/entry/new                      @controllers.activity.ActivityEntryController.create()
+POST    /activity/entry/upload                   @controllers.activity.ActivityEntryController.uploadVideo()
+GET    /activity/entry/readAll/:pageNumber/:sizePerPage  @controllers.activity.ActivityEntryController.readAll(pageNumber:Integer, sizePerPage:Integer)
+
+
+# Shop
+POST    /shop/new                           @controllers.shop.ShopController.create()
+GET     /shop/list/:pageNumber/:sizePerPage @controllers.shop.ShopController.read(pageNumber:Integer, sizePerPage:Integer)
+POST    /shop/update                        @controllers.shop.ShopController.update()
+GET     /shop/delete/:id                    @controllers.shop.ShopController.delete(id:String)
+
+# Coupon
+POST    /coupon/new                           @controllers.ticket.CouponController.create()
+GET     /coupon/list/:pageNumber/:sizePerPage @controllers.ticket.CouponController.readAll(pageNumber:Integer, sizePerPage:Integer)
+POST    /coupon/update                        @controllers.ticket.CouponController.update()
+GET     /coupon/delete/:id                    @controllers.ticket.CouponController.delete(id:String)
+
+#HotPeople
+POST    /hotPeople/pic/new                    @controllers.hotpeople.HotPeoplePicController.create()
+POST    /hotPeople/mp3/new                    @controllers.hotpeople.HotPeopleMp3Controller.create()
+POST    /hotPeople/rank/new                   @controllers.hotpeople.HotPeopleRankController.create()
+GET     /hotPeople/pic/:num   @controllers.hotpeople.HotPeoplePicController.readByNumName(num:Integer)
+GET     /hotPeople/mp3/:num   @controllers.hotpeople.HotPeopleMp3Controller.readByNumName(num:Integer)
+GET     /hotPeople/rank/list        @controllers.hotpeople.HotPeopleRankController.readAll()
+GET     /hotPeople/rank/list/:pageNumber/:sizePerPage        @controllers.hotpeople.HotPeopleRankController.readByPage(pageNumber:Integer, sizePerPage:Integer)
+GET    /hotPeople/pic/delete/:num/:name   @controllers.hotpeople.HotPeoplePicController.deletePic(num:Integer, name:String)
+GET    /hotPeople/pic/delete/:picId       @controllers.hotpeople.HotPeoplePicController.deleteOne(picId:String)
+GET   /hotPeople/rank/delete/:num          @controllers.hotpeople.HotPeopleRankController.deleteRank(num:Integer)
+GET    /hotPeople/mp3/delete/:num           @controllers.hotpeople.HotPeopleMp3Controller.deleteMp3(num:Integer)
+POST   /hotPeople/pic/update              @controllers.hotpeople.HotPeoplePicController.update()
+POST   /hotPeople/mp3/update                @controllers.hotpeople.HotPeopleMp3Controller.update()
+POST   /hotPeople/rank/update              @controllers.hotpeople.HotPeopleRankController.update()
+
+#EatToday
+GET     /eatToday/question/current          @controllers.eatToday.EatRecordController.readQuestion()
+POST    /eatToday/entry/new                     @controllers.eatToday.EatEntryController.create()
+GET     /eatToday/readRecord/:questionId            @controllers.eatToday.EatRecordController.currentStatus(questionId:String)
+POST    /eatToday/answer/new                    @controllers.eatToday.EatRecordController.create()
+GET     /eatToday/share/new/:questionId        @controllers.eatToday.EatRecordController.saveShareRecord(questionId:String)
+
+#Data
+GET     /data/Data/:fromDate/:toDate   		@controllers.data.DataController.getDateStatistics(fromDate:String, toDate:String)
+
+#PoShow
+GET    /poshow/theme/isInOrNot/:theme        @controllers.poshow.ThemeController.isInOrNot(theme:String)
+GET    /poshow/theme/enter/:theme/:pageNumber/:sizePerPage        @controllers.poshow.ThemeController.themeEnter(theme:String, pageNumber:Integer, sizePerPage:Integer)
+GET     /poshow/activity/$pageNumber<[0-9]+>/:size @controllers.poshow.ActController.read(pageNumber:Integer, size:Integer)
+POST    /poshow/theme/join/:theme        @controllers.poshow.ThemeController.themeJoin(theme:String)
+POST    /poshow/article/post        @controllers.poshow.ArticleController.post()
+
+#Vote
+GET     /selfvote/readvote/:pageNumber/:sizePerPage			@controllers.users.VoteController.readVote(pageNumber:Integer,sizePerPage:Integer)
+GET     /selfvote/readme/:id				@controllers.users.VoteController.readMe(id:String)
+GET     /selfvote/vote/:voteId  		@controllers.users.VoteController.vote(voteId:String)
+POST     /selfvote/join 				@controllers.users.VoteController.voteJoin()
+GET     /selfvote/follow/:id				@controllers.users.VoteController.follow(id:String)
+POST     /selfvote/verify			@controllers.users.VoteController.verify()
+GET     /fmcallback                       @controllers.users.VoteController.wxCallback()
+GET     /selfvote/search/:keyword/:pageNumber/:sizePerPage  @controllers.users.VoteController.readBySearch(keyword:String, pageNumber:Integer, sizePerPage:Integer)

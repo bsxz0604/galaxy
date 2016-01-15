@@ -1,0 +1,78 @@
+#message information
+#account
+account.unauthenticated   = account failure
+account.alreadyregistered = account failure
+account.registerfailed    = account failure
+account.createfailed      = account failure
+account.nopassword        = account failure
+account.notfound          = account failure
+account.norights          = account failure
+
+#application
+application.actionfailed  = app action failed
+application.notselected   = app not selected
+
+#banner
+banner.failure = banner action failed
+
+#appprofile
+appprofile.failure = appprofile action failed
+appprofile.randomName = G
+
+#interestfan
+interestfan.failure = interestfan action failed
+
+#program
+program.failure = program action failed
+
+#program content
+programcontent.failure = program content action failed
+
+#activity
+activity.failure = activity action failed
+
+#activity content
+activitycontent.failure = activity content failed
+
+#activity choice
+activitychoice.failure = activity choice failed
+
+#album
+album.failure = album failed
+
+#constellation
+constellation.failure = constellation failed
+
+#nationality
+nationality.failure = nationality failed
+
+#site name
+#site.name = http://testfcwm.24-7.com.cn
+site.name = http://galaxy.24-7.com.cn
+#site.name = http://192.168.10.226:9000
+#geo
+geo.unknown = "未知"
+
+#resource dir
+picture.dir = /assets/
+
+#shop
+shop.failure = shop failed
+
+#shake record
+shakerecord.failure = shake record failed
+
+#present send message
+present.sendmessage = %s送了%s X%d 
+
+#race message
+race.noright = 没有抽中哦，不能发言
+race.hasright = 已抽中，请尽快发言哦
+race.cong = 恭喜你获得发言机会，抓紧时间
+race.notify = %s获得和男神对话的机会哦
+race.prepare = 即将翻牌, 还有%d秒
+race.unknown = 未知
+race.start = 赶快猛戳获得与男神聊天机会啊
+race.hostOnline = 男神已经在线上，请安静哦，等男神发出邀请时猛戳获取对话机会
+race.ruleForHost = 点击随机邀请粉丝对话，回答完毕后可再随机抽取，请不要太频繁翻牌哦
+race.sendflower = 送花狂魔:
